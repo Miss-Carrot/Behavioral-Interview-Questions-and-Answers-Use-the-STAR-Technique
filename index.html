@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Behavioral Interview Questions and Answers: Use the STAR Technique – Indeed</title>
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon.png">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --correct: #22c55e;
+      --incorrect: #ef4444;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; }
+
+    h1 {
+      font-size: 1.65rem;
+      margin-bottom: 6px;
+      color: #f8fafc;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .instructions {
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-size: 1.02rem;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      background: #000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    .video-fallback {
+      text-align: center;
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .video-fallback a { color: var(--accent); }
+
+    .question {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .question h3 {
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      color: #f1f5f9;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 13px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      user-select: none;
+    }
+
+    .option:hover { border-color: var(--accent); background: #1e293b; }
+
+    .option input[type="radio"] {
+      margin-top: 3px;
+      accent-color: var(--accent);
+      width: 17px; height: 17px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .option span { flex: 1; }
+
+    .option.correct {
+      background: rgba(34, 197, 94, 0.18);
+      border-color: var(--correct);
+      color: #bbf7d0;
+    }
+
+    .option.incorrect {
+      background: rgba(239, 68, 68, 0.18);
+      border-color: var(--incorrect);
+      color: #fecaca;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 28px 0 16px;
+      align-items: center;
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: #0f172a;
+      border: none;
+      padding: 12px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button.primary:hover { opacity: 0.9; }
+
+    button.secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 12px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #score {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-left: 8px;
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.show { display: flex; }
+
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .modal .score-big {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 8px;
+    }
+
+    .modal .message {
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .modal button {
+      background: var(--accent);
+      color: #0f172a;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .modal button:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Behavioral Interview Questions and Answers: Use the STAR Technique</h1>
+    <p class="subtitle">by Indeed Career Tips</p>
+    <p class="instructions">Listen to the video and choose the one correct answer.</p>
+
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/zoGZQatkqKg?rel=0"
+        title="Behavioral Interview Questions and Answers: Use the STAR Technique – Indeed"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <p class="video-fallback">
+      If the video appears as a black square,
+      <a href="https://youtu.be/zoGZQatkqKg" target="_blank" rel="noopener">watch it directly on YouTube here</a>.
+    </p>
+
+    <form id="quizForm">
+      <div class="question" data-correct="B">
+        <h3>1. What is the main focus of behavioral interview questions?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="A"> <span>A. Your academic qualifications</span></label>
+          <label class="option"><input type="radio" name="q1" value="B"> <span>B. How you handled situations in the past</span></label>
+          <label class="option"><input type="radio" name="q1" value="C"> <span>C. Your personal interests</span></label>
+          <label class="option"><input type="radio" name="q1" value="D"> <span>D. Your future career plans</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="C">
+        <h3>2. What method does the video recommend for answering behavioral interview questions?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q2" value="A"> <span>A. SWOT</span></label>
+          <label class="option"><input type="radio" name="q2" value="B"> <span>B. SMART</span></label>
+          <label class="option"><input type="radio" name="q2" value="C"> <span>C. STAR</span></label>
+          <label class="option"><input type="radio" name="q2" value="D"> <span>D. AIDA</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="C">
+        <h3>3. What does the S in STAR stand for?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q3" value="A"> <span>A. Skills</span></label>
+          <label class="option"><input type="radio" name="q3" value="B"> <span>B. Strategy</span></label>
+          <label class="option"><input type="radio" name="q3" value="C"> <span>C. Situation</span></label>
+          <label class="option"><input type="radio" name="q3" value="D"> <span>D. Solution</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="B">
+        <h3>4. What should you describe when explaining the Situation?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q4" value="A"> <span>A. The final outcome</span></label>
+          <label class="option"><input type="radio" name="q4" value="B"> <span>B. The context in which the situation occurred</span></label>
+          <label class="option"><input type="radio" name="q4" value="C"> <span>C. Your future plans</span></label>
+          <label class="option"><input type="radio" name="q4" value="D"> <span>D. Your personal opinion</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="C">
+        <h3>5. What does the T in STAR stand for?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q5" value="A"> <span>A. Target</span></label>
+          <label class="option"><input type="radio" name="q5" value="B"> <span>B. Training</span></label>
+          <label class="option"><input type="radio" name="q5" value="C"> <span>C. Task</span></label>
+          <label class="option"><input type="radio" name="q5" value="D"> <span>D. Timing</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="A">
+        <h3>6. What does the Task section explain?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q6" value="A"> <span>A. What you were responsible for doing</span></label>
+          <label class="option"><input type="radio" name="q6" value="B"> <span>B. What your colleagues thought about you</span></label>
+          <label class="option"><input type="radio" name="q6" value="C"> <span>C. What happened after the project</span></label>
+          <label class="option"><input type="radio" name="q6" value="D"> <span>D. What you would do differently</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="B">
+        <h3>7. What does the A in STAR stand for?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q7" value="A"> <span>A. Achievement</span></label>
+          <label class="option"><input type="radio" name="q7" value="B"> <span>B. Action</span></label>
+          <label class="option"><input type="radio" name="q7" value="C"> <span>C. Attitude</span></label>
+          <label class="option"><input type="radio" name="q7" value="D"> <span>D. Analysis</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="C">
+        <h3>8. What should you focus on when describing the Action?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q8" value="A"> <span>A. What the company eventually decided</span></label>
+          <label class="option"><input type="radio" name="q8" value="B"> <span>B. What your manager told you to do</span></label>
+          <label class="option"><input type="radio" name="q8" value="C"> <span>C. The specific steps you personally took</span></label>
+          <label class="option"><input type="radio" name="q8" value="D"> <span>D. What you learned at university</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="C">
+        <h3>9. What does the R in STAR stand for?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q9" value="A"> <span>A. Response</span></label>
+          <label class="option"><input type="radio" name="q9" value="B"> <span>B. Reason</span></label>
+          <label class="option"><input type="radio" name="q9" value="C"> <span>C. Result</span></label>
+          <label class="option"><input type="radio" name="q9" value="D"> <span>D. Reflection</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="A">
+        <h3>10. What should you explain in the Result section?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q10" value="A"> <span>A. What happened as a result of your actions</span></label>
+          <label class="option"><input type="radio" name="q10" value="B"> <span>B. Why you applied for the job</span></label>
+          <label class="option"><input type="radio" name="q10" value="C"> <span>C. What task you were originally given</span></label>
+          <label class="option"><input type="radio" name="q10" value="D"> <span>D. What your colleagues were responsible for</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="B">
+        <h3>11. When answering a question about a difficult problem at work, what should you use?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q11" value="A"> <span>A. A hypothetical example</span></label>
+          <label class="option"><input type="radio" name="q11" value="B"> <span>B. A specific example from your experience</span></label>
+          <label class="option"><input type="radio" name="q11" value="C"> <span>C. A list of your qualifications</span></label>
+          <label class="option"><input type="radio" name="q11" value="D"> <span>D. A general statement about your personality</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="B">
+        <h3>12. Why is it useful to use the STAR method?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q12" value="A"> <span>A. It makes answers longer.</span></label>
+          <label class="option"><input type="radio" name="q12" value="B"> <span>B. It helps structure your answer clearly.</span></label>
+          <label class="option"><input type="radio" name="q12" value="C"> <span>C. It allows you to avoid discussing difficult situations.</span></label>
+          <label class="option"><input type="radio" name="q12" value="D"> <span>D. It guarantees that you will get the job.</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="C">
+        <h3>13. What should a candidate make clear when describing their actions?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q13" value="A"> <span>A. What the whole team did</span></label>
+          <label class="option"><input type="radio" name="q13" value="B"> <span>B. What the company expected</span></label>
+          <label class="option"><input type="radio" name="q13" value="C"> <span>C. What they personally did</span></label>
+          <label class="option"><input type="radio" name="q13" value="D"> <span>D. What they would like to do in the future</span></label>
+        </div>
+      </div>
+
+      <div class="question" data-correct="A">
+        <h3>14. What is important when describing the Situation?</h3>
+        <div class="options">
+          <label class="option"><input type="radio" name="q14" value="A"> <span>A. Giving enough context for the interviewer to understand it</span></label>
+          <label class="option"><input type="radio" name="q14" value="B"> <span>B. Explaining every detail of your career</span></label>
+          <label class="option"><input type="radio" name="q14" value="C"> <span>C. Focusing only on the final result</span></label>
+          <label class="option"><input type="radio" name="q14" value="D"> <span>D. Avoiding any mention of difficulties</span></label>
+        </div>
+      </div>
+    </form>
+
+    <div class="controls">
+      <button type="button" class="primary" id="checkBtn">Check answers</button>
+      <button type="button" class="secondary" id="resetBtn">Reset</button>
+      <span id="score"></span>
+    </div>
+
+    <p class="footer-note">Select your answers, then click “Check answers”. Green = correct, red = incorrect.</p>
+  </div>
+
+  <div class="modal-overlay" id="scoreModal">
+    <div class="modal">
+      <div class="score-big" id="modalScore"></div>
+      <div class="message" id="modalMessage"></div>
+      <button type="button" id="modalClose">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const scoreMessages = {
+      14: "🌟 Outstanding! You understood everything.",
+      13: "🏆 Excellent! Almost perfect!",
+      12: "🎉 Great job! Very strong understanding.",
+      11: "😎 Very good! You understood most of the key points.",
+      10: "👍 Good job! Solid understanding overall.",
+       9: "😊 Well done! You caught most of the important information.",
+       8: "🙂 Good effort! You understood the main ideas.",
+       7: "👌 Not bad! You got the general idea.",
+       6: "💪 Keep going! You understood some key points.",
+       5: "🤔 Almost there! Some important details were missed.",
+       4: "🧐 Keep practising! You caught a few key points.",
+       3: "📚 More practice needed. Review the video and try again.",
+       2: "🔎 Keep working on your listening!",
+       1: "🌱 Just getting started! Try listening again.",
+       0: "🔄 Give it another try! Listen again and see what you can catch."
+    };
+
+    function showScorePopup(score, total) {
+      document.getElementById('modalScore').textContent = `${score} / ${total}`;
+      document.getElementById('modalMessage').textContent = scoreMessages[score] || scoreMessages[0];
+      document.getElementById('scoreModal').classList.add('show');
+    }
+
+    document.getElementById('modalClose').addEventListener('click', () => {
+      document.getElementById('scoreModal').classList.remove('show');
+    });
+
+    document.getElementById('scoreModal').addEventListener('click', (e) => {
+      if (e.target.id === 'scoreModal') {
+        document.getElementById('scoreModal').classList.remove('show');
+      }
+    });
+
+    document.getElementById('checkBtn').addEventListener('click', () => {
+      let correctCount = 0;
+      const questions = document.querySelectorAll('.question');
+
+      questions.forEach(q => {
+        const correct = q.dataset.correct;
+        const opts = q.querySelectorAll('.option');
+        const selected = q.querySelector('input:checked');
+
+        opts.forEach(o => o.classList.remove('correct', 'incorrect'));
+
+        if (selected) {
+          const opt = selected.closest('.option');
+          if (selected.value === correct) {
+            opt.classList.add('correct');
+            correctCount++;
+          } else {
+            opt.classList.add('incorrect');
+            opts.forEach(o => {
+              if (o.querySelector('input').value === correct) o.classList.add('correct');
+            });
+          }
+        }
+      });
+
+      document.getElementById('score').textContent = `Score: ${correctCount} / ${questions.length}`;
+      showScorePopup(correctCount, questions.length);
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      document.getElementById('quizForm').reset();
+      document.querySelectorAll('.option').forEach(o => o.classList.remove('correct', 'incorrect'));
+      document.getElementById('score').textContent = '';
+    });
+  </script>
+</body>
+</html>
